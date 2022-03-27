@@ -1,20 +1,37 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import Pemesanan from './Comp/Pemesanan';
+import Rincian from './Comp/Rincian';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import Pembatalan from './Comp/Pembatalan';
+const Stack = createNativeStackNavigator();
 
-export default function App() {
+const App = () => {
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName={"Pemesanan"}
+      >
+        <Stack.Screen
+          name="Pemesanan"
+          component={Pemesanan}
+          options={{
+            title: "Pemesanan",
+          }}
+        />
+        <Stack.Screen
+          name="Konfirmasi"
+          component={Rincian}
+        />
+        <Stack.Screen
+          name="Batal"
+          component={Pembatalan}
+        />
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default App;
